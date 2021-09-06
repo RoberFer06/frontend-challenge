@@ -1,0 +1,88 @@
+<div class="wrapper">
+  <div class="inner">
+    <img src="./assets/img/image-1.png" alt="" class="image-1">
+    <form [formGroup]="form" autocomplete="off" (ngSubmit)="(form.valid && !loadingForm) && submit()">
+      <h3>Eres nuevo?</h3>
+
+      <small class="input-valid" *ngIf="!form.controls.firstName.errors  ">
+        <strong>Correcto.!</strong>
+      </small>
+
+      <small *ngIf="form.controls.firstName.errors?.maxlength  ">
+        El Nombre no debe superar los <strong>35 caracteres</strong>.
+      </small>
+
+      <small *ngIf="form.controls.firstName.errors?.required  ">
+        El nombre es <strong>requerido</strong>.
+      </small>
+      <div class="form-holder">
+
+        <span class="lnr lnr-user"></span>
+        <input formControlName="firstName" type="text" class="form-control " placeholder="First Name"
+          autocomplete="false">
+      </div>
+
+
+      <small class="input-valid" *ngIf="!form.controls.lastName.errors  ">
+        <strong>Correcto.!</strong>
+      </small>
+      <small *ngIf="form.controls.lastName.errors?.maxlength  ">
+        El Nombre no debe superar los <strong>35 caracteres</strong>.
+      </small>
+      <small *ngIf="form.controls.lastName.errors?.required ">
+        El apellido es <strong>requerido</strong>.
+      </small>
+
+      <div class="form-holder">
+        <span class="lnr lnr-user"></span>
+        <input formControlName="lastName" type="text" class="form-control" placeholder="last Name" autocomplete="off">
+      </div>
+
+      <small class="input-valid" *ngIf="!form.controls.phone.errors  ">
+        <strong>Correcto.!</strong>
+      </small>
+      <small *ngIf="form.controls.phone.errors?.pattern  ">
+        El numero de telefono <strong>no es valido</strong>.
+      </small>
+
+      <small *ngIf="form.controls.phone.errors?.required  ">
+        El numero de telefono <strong>requerido</strong>.
+      </small>
+
+      <small *ngIf="form.controls.phone.errors?.maxlength  ">
+        El Nombre no debe superar los <strong>10 caracteres</strong>.
+      </small>
+
+      <small *ngIf="form.controls.phone.errors?.minlength  ">
+        El Nombre debe ser mayor<strong> 5 digitos</strong>.
+      </small>
+      <div class="form-holder">
+        <span class="lnr lnr-phone-handset"></span>
+        <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number" autocomplete="off">
+      </div>
+
+
+      <small class="input-valid" *ngIf="!form.controls.email.errors  ">
+        <strong>Correcto.!</strong>
+      </small>
+      <small *ngIf="form.controls.email.errors?.email">
+        El correo es <strong>inválido.</strong>
+      </small>
+      <small *ngIf="form.controls.email.errors?.required  ">
+        El correo es <strong>requerido</strong>.
+      </small>
+      <div class="form-holder">
+        <span class="lnr lnr-envelope"></span>
+        <input formControlName="email" class="form-control" placeholder="E-mail" autocomplete="off">
+      </div>
+      <button [disabled]="!form.valid || loadingForm"
+        [style]="{cursor: !form.valid || loadingForm ? 'not-allowed' : ''}">
+        <span>{{ !loadingForm ? 'Register' : "Loading..."}}</span>
+        <div class="spinner-border" role="status" *ngIf="loadingForm">
+          <span class="sr-only"></span>
+        </div>
+      </button>
+    </form>
+    <img src="./assets/img/image-2.png" alt="" class="image-2">
+  </div>
+</div>
